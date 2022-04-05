@@ -26,7 +26,12 @@ module.exports = {
                 test: /\.css|.styl$/i, //se agrego la extension styl que corresponde a stylys
                 use: [MiniCssExtractPlugin.loader,
                 'css-loader','stylus-loader'], //asi mismo se agrego la configuracion para el loader de stylus
+            },
+            {
+                test: /\.png/,
+                type: 'asset/resource'
             }
+            
         ]
     },
     plugins: [
