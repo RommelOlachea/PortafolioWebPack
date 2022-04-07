@@ -1,11 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //agregamos el plugin de css al documento
-const CopyPlugin = require('copy-webpack-plugin'); //agregamos el soporte para copy webpack, para copiar archivos en la carp. dist
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin'); //agregamos el soporte para copy webpack, para copiar archivos en la carp. distconst Dotenv = require('dotenv-webpack');
 
 
 module.exports = {
@@ -15,6 +11,7 @@ module.exports = {
         filename: '[name][contenthash].js',  
         assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
+    mode: 'development',
     resolve: {
         extensions: ['.js'],
         alias: {
@@ -80,13 +77,6 @@ module.exports = {
             ]
         }),
         new Dotenv(), //utilizamos esto para el manejo de variables de entorno
-        new CleanWebpackPlugin(), //este plugin nos permite borrar los archivos de la carpta dist, cuando realizamos un build
     ],
-    optimization: {
-        minimize: true,
-        minimizer: [
-            new CssMinimizerPlugin(),
-            new TerserPlugin(),
-        ]
-    }
+
 }
