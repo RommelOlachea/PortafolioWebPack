@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //agregamos el plugin de css al documento
 const CopyPlugin = require('copy-webpack-plugin'); //agregamos el soporte para copy webpack, para copiar archivos en la carp. distconst Dotenv = require('dotenv-webpack');
 const Dotenv = require('dotenv-webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
 
 module.exports = {
     entry: './src/index.js',
@@ -12,6 +13,7 @@ module.exports = {
         assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     mode: 'development',
+    devtool: 'source-map', //se crea un mapa con formato json
     resolve: {
         extensions: ['.js'],
         alias: {
@@ -77,6 +79,7 @@ module.exports = {
             ]
         }),
         new Dotenv(), //utilizamos esto para el manejo de variables de entorno
+        //new BundleAnalyzerPlugin(),
     ],
     devServer: {
         static: {
